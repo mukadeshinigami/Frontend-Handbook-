@@ -1,175 +1,141 @@
 ---
-title: "01 — CSS Basics and Syntax"
-description: "Concise introduction to CSS: what it is, how to connect it, syntax rules, cascade, and inheritance."
+title: "Code Breakdown 01 — CSS Basics and Syntax"
+description: "Practical code breakdown: CSS fundamentals through real examples"
 lesson: 1
 previous_topics: []
-new_concepts: ["CSS purpose", "connection methods", "syntax structure", "cascade", "inheritance", "comments"]
+new_concepts: ["syntax-structure", "selectors-basic", "properties-values", "cascade", "inheritance"]
 ---
 
-# Lesson 1: CSS Basics and Syntax
-
-**Current Topic:** CSS Fundamentals  
+**Current Topic:** CSS Basics and Syntax  
 **Previously Covered:** None (first lesson)  
-**New Concepts:** What CSS is, connection methods, syntax, cascade, inheritance
+**New Concepts:** Syntax, selectors, properties, cascade, inheritance
 
 ---
 
-## What is CSS?
-
-CSS (Cascading Style Sheets) controls the visual presentation of HTML documents. It separates content (HTML) from design (CSS).
-
-**Purpose:**
-- Style elements (colors, fonts, spacing)
-- Layout pages (positioning, flexbox, grid)
-- Create responsive designs
-- Add animations and transitions
-
----
-
-## Three Ways to Connect CSS
-
-### 1. Inline CSS
-Directly in HTML elements via `style` attribute.
+## Example Code
 
 ```html
-<p style="color: blue; font-size: 16px;">Inline styled text</p>
-```
-
-**Use case:** Quick tests, overrides (avoid in production).
-
-### 2. Internal CSS
-Inside `<style>` tag in `<head>`.
-
-```html
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>CSS Basics Demo</title>
   <style>
-    p { color: blue; }
+    /* Type selector targets all paragraphs */
+    p {
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Class selector - reusable style */
+    .highlight {
+      background: yellow;
+      padding: 0.25rem;
+    }
+    
+    /* Cascade: later rule overrides */
+    p {
+      color: #555; /* This wins */
+    }
   </style>
 </head>
+<body>
+  <p>Regular paragraph with inherited line-height.</p>
+  <p class="highlight">Highlighted paragraph.</p>
+</body>
+</html>
 ```
-
-**Use case:** Single-page styles, small projects.
-
-### 3. External CSS (Recommended)
-Separate `.css` file linked via `<link>`.
-
-```html
-<head>
-  <link rel="stylesheet" href="styles.css">
-</head>
-```
-
-**File: styles.css**
-```css
-p { color: blue; }
-```
-
-**Use case:** Production, scalability, caching.
 
 ---
 
-## CSS Syntax
+## Breakdown (80% new)
+
+### Syntax Structure
 
 ```css
 selector {
   property: value;
-  property: value;
 }
 ```
 
-**Example:**
-```css
-h1 {
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-```
+- **Selector** (`p`): targets elements
+- **Property** (`color`): what to style
+- **Value** (`#333`): how to style it
+- **Declaration**: property + value + semicolon
 
-**Components:**
-- **Selector** (`h1`): targets HTML elements
-- **Property** (`color`): aspect to style
-- **Value** (`#333`): setting for property
-- **Declaration** (`color: #333;`): property + value + semicolon
+### Basic Selectors
 
----
+1. **Type selector** (`p`): matches all `<p>` elements
+2. **Class selector** (`.highlight`): matches elements with `class="highlight"`
+3. **ID selector** (`#main`): matches element with `id="main"` (not shown)
 
-## Comments
+### Properties and Values
 
 ```css
-/* Single-line comment */
-
-/*
-  Multi-line
-  comment block
-*/
-
 p {
-  color: red; /* Inline comment */
+  color: #333;        /* Text color (hex) */
+  line-height: 1.6;   /* Spacing between lines */
 }
 ```
 
----
+Common value types:
+- Colors: `#333`, `rgb(0,0,0)`, `blue`
+- Lengths: `1rem`, `16px`, `50%`
+- Numbers: `1.6` (unitless for line-height)
 
-## The Cascade
+### The Cascade
 
-Multiple rules can target the same element. CSS applies them based on:
+When multiple rules target the same element, later rules override earlier ones:
 
-1. **Specificity** (more specific selectors win)
-2. **Source order** (later rules override earlier)
-3. **Importance** (`!important` flag)
-
-**Example:**
 ```css
-p { color: blue; }      /* Applied first */
-p { color: green; }     /* Overrides previous */
+p { color: #333; }  /* Applied first */
+p { color: #555; }  /* Overrides previous */
 ```
 
-Result: paragraphs are green.
+Result: paragraphs are `#555`.
+
+### Inheritance
+
+Children inherit certain properties from parents:
+
+```css
+p {
+  line-height: 1.6;  /* Inherited by nested spans */
+}
+```
+
+**Inherited:** `color`, `font-family`, `line-height`  
+**Not inherited:** `padding`, `background`, `border`
 
 ---
 
-## Inheritance
+## Key Patterns
 
-Some properties pass from parent to child elements automatically.
-
-**Inherited properties:** `color`, `font-family`, `line-height`, `text-align`  
-**Not inherited:** `margin`, `padding`, `border`, `background`
-
-**Example:**
+1. **External stylesheet** (production):
 ```html
-<div style="color: red;">
-  <p>This text is red (inherited)</p>
-</div>
+<link rel="stylesheet" href="styles.css">
 ```
 
-Force inheritance:
+2. **Internal stylesheet** (demos/prototypes):
+```html
+<style>
+  /* CSS here */
+</style>
+```
+
+3. **Class-based styling** (maintainable):
 ```css
-button {
-  font-family: inherit; /* Inherits from parent */
-}
+.btn { /* reusable button style */ }
 ```
 
 ---
 
-## Quick Reference
+## Practice Exercise
 
-| Concept | Summary |
-|---------|---------|
-| **Purpose** | Separate presentation from content |
-| **Connection** | Inline, internal, external (prefer external) |
-| **Syntax** | `selector { property: value; }` |
-| **Cascade** | Specificity + order determine applied styles |
-| **Inheritance** | Some properties pass to children |
-| **Comments** | `/* comment */` |
+Create `demo.html`:
+1. Add internal `<style>` block
+2. Style all headings with `color: navy;`
+3. Create `.box` class with `padding: 1rem; border: 1px solid #ccc;`
+4. Apply `.box` to a `<div>` and observe
 
----
-
-## Practice
-
-1. Create `index.html` and link external `styles.css`
-2. Style a heading with custom color and size
-3. Test cascade by writing duplicate rules
-4. Observe inheritance with nested elements
-
-**Next Lesson Preview:** Selectors and specificity (targeting elements precisely).
+**Next:** Selectors deep-dive (specificity, combinators, pseudo-classes)
