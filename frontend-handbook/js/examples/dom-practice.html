@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Практика</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 4px solid #667eea;
+    }
+
+    .section h2 {
+      color: #667eea;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .text {
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    /* Класс для подсветки */
+    .highlight {
+      background: #ffd700;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    /* Класс для скрытия */
+    .hidden {
+      display: none;
+    }
+
+    /* Класс для изменения цвета */
+    .blue-text {
+      color: #0066cc;
+      font-weight: bold;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      transition: border 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .output {
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      margin-top: 10px;
+      min-height: 50px;
+      border: 2px dashed #ddd;
+    }
+
+    .counter {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #667eea;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .info {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Заголовок (будет изменён через JS) -->
+    <h1 id="main-title">Старый заголовок</h1>
+    <p class="subtitle">Этот текст появится при загрузке страницы</p>
+
+    <!-- Секция 1: Изменение текста и цвета -->
+    <div class="section">
+      <h2>Секция 1: Изменение текста</h2>
+      <p id="paragraph" class="text">
+        Это обычный абзац. Нажмите кнопки ниже, чтобы изменить его.
+      </p>
+      <button id="btn-change-text">Изменить текст</button>
+      <button id="btn-toggle-color">Переключить цвет</button>
+    </div>
+
+    <!-- Секция 2: Показать/Скрыть -->
+    <div class="section">
+      <h2>Секция 2: Показать/Скрыть элемент</h2>
+      <p id="toggle-text" class="text">
+        Этот текст можно скрыть и показать снова!
+      </p>
+      <button id="btn-toggle">Переключить видимость</button>
+    </div>
+
+    <!-- Секция 3: Интерактивный ввод -->
+    <div class="section">
+      <h2>Секция 3: Динамическое обновление</h2>
+      <input 
+        type="text" 
+        id="name-input" 
+        placeholder="Введите своё имя..."
+      >
+      <div class="output">
+        <p id="greeting">Здесь появится приветствие...</p>
+      </div>
+    </div>
+
+    <!-- Секция 4: Счётчик кликов -->
+    <div class="section">
+      <h2>Секция 4: Счётчик</h2>
+      <div class="counter" id="counter">0</div>
+      <button id="btn-increment">Увеличить (+1)</button>
+      <button id="btn-reset">Сбросить</button>
+    </div>
+
+    <!-- Информация -->
+    <div class="info">
+      <strong>💡 Совет:</strong> Откройте консоль разработчика (F12) 
+      и посмотрите, как изменяются элементы при взаимодействии!
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="dom-practice.bundle.js" defer></script>
+</body>
+</html>
