@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,6 +106,13 @@
       transform: translateY(0);
     }
 
+    /* Полная ширина для кнопки сброса */
+    .btn-reset {
+      width: 50%;
+    
+      box-sizing: border-box; /* чтобы паддинги не ломали ширину */
+    }
+
     input[type="text"] {
       width: 100%;
       padding: 12px;
@@ -130,11 +138,40 @@
     }
 
     .counter {
-      font-size: 3rem;
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      font-size: 3.5rem;
       font-weight: bold;
       color: #667eea;
       text-align: center;
       margin: 20px 0;
+      
+
+    /* Компактная строка для счётчика + кнопок */
+    .counter-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .counter-row .counter {
+      flex: 0 0 100px; /* фиксированная область для числа */
+      margin: 0;
+      padding: 8px 0;
+    }
+    }
+
+    /* Кнопки счётчика в одну строку */
+    .counter-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .counter-actions .btn-reset {
+      flex: 1;       /* равные по ширине */
+      width: auto;   /* отменяем width:100% */
+      margin: 0;     /* убрать внешние отступы, чтобы gap был ровный */
     }
 
     .info {
@@ -146,8 +183,10 @@
       font-size: 0.9rem;
       color: #0d47a1;
     }
+    /* (removed duplicate rules) */
   </style>
 </head>
+
 <body>
   <div class="container">
     <!-- Заголовок (будет изменён через JS) -->
@@ -176,11 +215,7 @@
     <!-- Секция 3: Интерактивный ввод -->
     <div class="section">
       <h2>Секция 3: Динамическое обновление</h2>
-      <input 
-        type="text" 
-        id="name-input" 
-        placeholder="Введите своё имя..."
-      >
+      <input type="text" id="name-input" placeholder="Введите своё имя...">
       <div class="output">
         <p id="greeting">Здесь появится приветствие...</p>
       </div>
@@ -189,14 +224,18 @@
     <!-- Секция 4: Счётчик кликов -->
     <div class="section">
       <h2>Секция 4: Счётчик</h2>
-      <div class="counter" id="counter">0</div>
-      <button id="btn-increment">Увеличить (+1)</button>
-      <button id="btn-reset">Сбросить</button>
+  <div class="counter-row">
+    <div class="counter" id="counter">0</div>
+    <div class="counter-actions">
+      <button id="btn-increment" class="btn-reset">+1</button>
+      <button id="btn-reset" class="btn-reset">-1</button>
+    </div>
+  </div>
     </div>
 
     <!-- Информация -->
     <div class="info">
-      <strong>💡 Совет:</strong> Откройте консоль разработчика (F12) 
+      <strong>💡 Совет:</strong> Откройте консоль разработчика (F12)
       и посмотрите, как изменяются элементы при взаимодействии!
     </div>
   </div>
@@ -204,4 +243,5 @@
   <!-- JavaScript -->
   <script src="dom-practice.bundle.js" defer></script>
 </body>
+
 </html>
