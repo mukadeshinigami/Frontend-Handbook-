@@ -273,7 +273,7 @@ if (incrementButton && counterDisplay) {
 }
 
 if (resetButton && counterDisplay) {
-  resetButton.addEventListener('click', () => {
+  resetButton.addEventListener('click', () => {D
     count = 0;
     counterDisplay.textContent = count;
     console.log('🔄 Счётчик сброшен');
