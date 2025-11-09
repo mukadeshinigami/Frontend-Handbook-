@@ -1,0 +1,1 @@
+rd_("khello_world")
