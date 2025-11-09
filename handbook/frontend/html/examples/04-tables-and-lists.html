@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>04 — Lists & Tables · Frontend Handbook</title>
+    <style>
+      :root{--bg:#fbfcfe;--card:#fff;--muted:#6b7280;--accent:#0ea5a0}
+      body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#0b1220;padding:2rem}
+      .container{max-width:1100px;margin:0 auto;gap:1rem}
+      h1{margin:0 0 .25rem;font-size:1.25rem}
+      .lead{color:var(--muted);margin:0 0 1rem}
+
+      /* lists */
+      .examples{display:grid;grid-template-columns:1fr;gap:1.25rem}
+      .card{background:var(--card);padding:1rem;border-radius:10px;box-shadow:0 6px 18px rgba(12,18,31,0.06)}
+      ul.clean-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}
+      ul.clean-list li::before{content:"•";color:var(--accent);display:inline-block;width:1rem;margin-left:-1rem;margin-right:.5rem}
+      ol.styled{padding-left:1.25rem}
+      dl{margin:0}
+      dt{font-weight:600}
+      dd{margin:0 0 0.75rem 0;padding-left:.5rem;color:var(--muted)}
+
+      /* tables */
+      .table-wrap{overflow:auto;border-radius:8px}
+      table{width:100%;border-collapse:collapse;min-width:600px}
+      th,td{padding:.75rem 1rem;border-bottom:1px solid rgba(10,20,30,0.06);text-align:left}
+      th{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);font-weight:700}
+      tr:hover td{background:rgba(14,22,36,0.02)}
+      caption{caption-side:top;padding:.5rem .25rem;color:var(--muted);text-align:left}
+
+      /* responsive tweaks */
+      @media (min-width:900px){.examples{grid-template-columns:1fr 1fr}}
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>04 — Lists and Tables</h1>
+        <p class="lead">Правильное использование списков и таблиц. Семантика, доступность и адаптивность.</p>
+      </header>
+
+      <section class="examples">
+        <article class="card" id="lists">
+          <h2>Списки</h2>
+          <p class="lead">Когда использовать <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> и <code>&lt;dl&gt;</code>.</p>
+
+          <h3>Ненумерованные списки (ul)</h3>
+          <p>Используется для неупорядоченных коллекций (навигация, пункты без порядка).</p>
+          <ul>
+            <li>Простой элемент</li>
+            <li>И ещё один</li>
+            <li>И вложенный список:
+              <ul>
+                <li>Вложенный пункт A</li>
+                <li>Вложенный пункт B</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3>Нумерованные списки (ol)</h3>
+          <p>Используется, когда порядок важен (шаги, инструкции).</p>
+          <ol class="styled">
+            <li>Подготовить окружение</li>
+            <li>Установить зависимости</li>
+            <li>Запустить проект</li>
+          </ol>
+
+          <h3>Описание (dl)</h3>
+          <p>Список терминов и определений.</p>
+          <dl>
+            <dt>HTML</dt>
+            <dd>Язык разметки для веб-страниц.</dd>
+            <dt>CSS</dt>
+            <dd>Стиль и визуальное оформление страницы.</dd>
+          </dl>
+
+          <h3>Стилизация списков для интерфейсов</h3>
+          <p>Иногда нужен очищенный список без маркеров — используем <code>list-style:none</code>.</p>
+          <ul class="clean-list" aria-label="Пример очищенного списка">
+            <li>Быстрый доступ</li>
+            <li>История изменений</li>
+            <li>Настройки</li>
+          </ul>
+        </article>
+
+        <article class="card" id="tables">
+          <h2>Таблицы</h2>
+          <p class="lead">Таблицы — для табличных данных, не для layout'а.</p>
+
+          <div class="table-wrap">
+            <table aria-describedby="orders-caption">
+              <caption id="orders-caption">Последние заказы (табличные данные)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Клиент</th>
+                  <th scope="col">Сумма</th>
+                  <th scope="col">Статус</th>
+                  <th scope="col">Дата</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1001</td>
+                  <td><strong>ООО «Пример»</strong></td>
+                  <td>₽12,400</td>
+                  <td>Выполнено</td>
+                  <td>2025-10-01</td>
+                </tr>
+                <tr>
+                  <td>1002</td>
+                  <td>ИП Иванов</td>
+                  <td>₽4,990</td>
+                  <td>В обработке</td>
+                  <td>2025-10-02</td>
+                </tr>
+                <tr>
+                  <td>1003</td>
+                  <td>ООО «Тест»</td>
+                  <td>₽23,100</td>
+                  <td>Отправлено</td>
+                  <td>2025-10-03</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Доступность таблиц</h3>
+          <ul>
+            <li>Всегда используйте <code>&lt;th scope="col"&gt;</code> или <code>scope="row"</code> для заголовков</li>
+            <li>Добавляйте <code>&lt;caption&gt;</code> для описания содержания</li>
+            <li>Используйте <code>aria-describedby</code> или <code>summary</code> (legacy) для длинных таблиц</li>
+          </ul>
+
+          <h3>Комплексные таблицы</h3>
+          <p>Для сложных таблиц используйте <code>aria-labelledby</code>, <code>colgroup</code> и правильные scope атрибуты.</p>
+        </article>
+      </section>
+
+      <section class="card" id="notes">
+        <h2>Советы и частые ошибки</h2>
+        <ul>
+          <li>Не используйте таблицы для layout'а — используйте CSS Grid/Flexbox</li>
+          <li>Не забывайте о вложенных списках — сохраняйте читабельную иерархию</li>
+          <li>Тестируйте таблицы с клавиатурой и скринридерами</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

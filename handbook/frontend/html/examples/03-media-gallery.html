@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>03 — Media Gallery · Frontend Handbook</title>
+    <style>
+      :root{
+        --bg:#f6f7fb; --card:#fff; --muted:#6b7280; --accent:#0ea5a0;
+      }
+      html,body{height:100%;}
+      body{
+        margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background:var(--bg); color:#823737; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        padding:2rem;
+      }
+      header{max-width:1200px;margin:0 auto 1.25rem;display:flex;align-items:center;gap:1rem}
+      header h1{font-size:1.25rem;margin:0}
+      .lead{color:var(--muted);font-size:.95rem}
+
+      .gallery{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+      figure.photo{background:var(--card);border-radius:10px;overflow:hidden;margin:0;box-shadow:0 4px 10px rgba(16,24,40,0.06);transition:transform .28s cubic-bezier(.2,.9,.25,1),box-shadow .28s ease}
+      figure.photo:hover{transform:translateY(-80px);box-shadow:0 14px 26px rgba(16,24,40,0.12)}
+      figure.photo button{all:unset;display:block;cursor:pointer;width:100%;height:100%}
+      figure.photo img{display:block;width:100%;height:200px;object-fit:cover}
+      figure.photo figcaption{padding:.6rem .75rem;font-size:.9rem;color:var(--muted)}
+
+      /* Lightbox / modal */
+      .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:9999}
+      .lightbox[aria-hidden="false"]{display:flex}
+      .lightbox__panel{background:transparent;max-width:95vw;max-height:95vh;display:flex;align-items:center;justify-content:center;gap:1rem}
+      .lightbox__img{max-width:90vw;max-height:80vh;box-shadow:0 20px 40px rgba(2,6,23,0.6);border-radius:8px}
+      .lightbox__meta{color:#fff;text-align:center;font-size:.95rem}
+      .lightbox__controls{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 1rem;pointer-events:none}
+      .lightbox__controls button{pointer-events:auto;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;padding:.6rem;border-radius:6px}
+
+      /* responsive tweaks */
+      @media (min-width:900px){figure.photo img{height:170px}}
+      @media (min-width:1200px){figure.photo img{height:200px}}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>03 — Media Gallery</h1>
+        <p class="lead">Responsive gallery with captions, lazy-loading and an accessible keyboard-friendly lightbox.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="gallery" aria-label="Примеры изображений для галереи" id="gallery">
+        <!-- Each figure uses a button to open the lightbox (keeps semantics accessible) -->
+        <figure class="photo" data-index="0">
+          <button aria-label="Открыть изображение: Мост на рассвете" data-src="https://picsum.photos/id/1015/1200/800" data-alt="Мост на рассвете">
+            <img src="https://picsum.photos/id/1015/600/400" alt="Мост на рассвете" loading="lazy"/>
+          </button>
+          <figcaption>Мост на рассвете — атмосфера и туман</figcaption>
+        </figure>
+
+        <figure class="photo" data-index="1">
+          <button aria-label="Открыть изображение: Берег океана" data-src="https://picsum.photos/id/1016/1200/800" data-alt="Берег океана">
+            <img src="https://picsum.photos/id/1016/600/400" alt="Берег океана" loading="lazy"/>
+          </button>
+          <figcaption>Берег океана — волны и небо</figcaption>
+        </figure>
+
+        <figure class="photo" data-index="2">
+          <button aria-label="Открыть изображение: Городской пейзаж" data-src="https://picsum.photos/id/1020/1200/800" data-alt="Городской пейзаж">
+            <img src="https://picsum.photos/id/1020/600/400" alt="Городской пейзаж" loading="lazy"/>
+          </button>
+          <figcaption>Городской пейзаж — здания на закате</figcaption>
+        </figure>
+
+        <figure class="photo" data-index="3">
+          <button aria-label="Открыть изображение: Горная дорога" data-src="https://picsum.photos/id/1032/1200/800" data-alt="Горная дорога">
+            <img src="https://picsum.photos/id/1032/600/400" alt="Горная дорога" loading="lazy"/>
+          </button>
+          <figcaption>Горная дорога — крутые повороты</figcaption>
+        </figure>
+
+        <figure class="photo" data-index="4">
+          <button aria-label="Открыть изображение: Поле цветов" data-src="https://picsum.photos/id/1043/1200/800" data-alt="Поле цветов">
+            <img src="https://picsum.photos/id/1043/600/400" alt="Поле цветов" loading="lazy"/>
+          </button>
+          <figcaption>Поле цветов — пестрые оттенки</figcaption>
+        </figure>
+
+        <figure class="photo" data-index="5">
+          <button aria-label="Открыть изображение: Ночной город" data-src="https://picsum.photos/id/1050/1200/800" data-alt="Ночной город">
+            <img src="https://picsum.photos/id/1050/600/400" alt="Ночной город" loading="lazy"/>
+          </button>
+          <figcaption>Ночной город — огни и отражения</figcaption>
+        </figure>
+      </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" role="dialog" aria-hidden="true" aria-label="Просмотр изображения" id="lightbox">
+      <div class="lightbox__panel" role="document">
+        <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+        <div class="lightbox__meta" id="lightboxCaption"></div>
+      </div>
+      <div class="lightbox__controls" aria-hidden="false">
+        <button id="prevBtn" aria-label="Предыдущее">◀</button>
+        <button id="nextBtn" aria-label="Следующее">▶</button>
+      </div>
+    </div>
+
+    <script>
+      (function(){
+        const gallery = document.getElementById('gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightboxImg');
+        const lbCaption = document.getElementById('lightboxCaption');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const figures = Array.from(gallery.querySelectorAll('figure.photo'));
+        let current = -1;
+
+        function open(index){
+          const fig = figures[index];
+          if(!fig) return;
+          const btn = fig.querySelector('button');
+          const src = btn.getAttribute('data-src');
+          const alt = btn.getAttribute('data-alt') || '';
+          const caption = fig.querySelector('figcaption')?.textContent || '';
+          lbImg.src = src;
+          lbImg.alt = alt;
+          lbCaption.textContent = caption;
+          lightbox.setAttribute('aria-hidden','false');
+          current = index;
+          // put focus on nextBtn so keyboard arrows are easier to use
+          nextBtn.focus();
+        }
+
+        function close(){
+          lightbox.setAttribute('aria-hidden','true');
+          lbImg.src = '';
+          lbImg.alt = '';
+          lbCaption.textContent = '';
+          current = -1;
+        }
+
+        function showNext(){ open((current + 1) % figures.length); }
+        function showPrev(){ open((current - 1 + figures.length) % figures.length); }
+
+        // Open when a figure's button is clicked
+        gallery.addEventListener('click', e => {
+          const btn = e.target.closest('button');
+          if(!btn) return;
+          const fig = btn.closest('figure.photo');
+          const index = Number(fig.getAttribute('data-index'));
+          open(index);
+        });
+
+        // Controls
+        nextBtn.addEventListener('click', e => { e.stopPropagation(); showNext(); });
+        prevBtn.addEventListener('click', e => { e.stopPropagation(); showPrev(); });
+
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', e => {
+          if(e.target === lightbox) close();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+          const hidden = lightbox.getAttribute('aria-hidden') === 'true';
+          if(hidden) return;
+          if(e.key === 'Escape') close();
+          if(e.key === 'ArrowRight') showNext();
+          if(e.key === 'ArrowLeft') showPrev();
+        });
+
+        // Keep simple focus cycling between prev and next buttons while lightbox open
+        lightbox.addEventListener('keydown', e => {
+          if(e.key === 'Tab'){
+            e.preventDefault();
+            if(document.activeElement === nextBtn) prevBtn.focus(); else nextBtn.focus();
+          }
+        });
+
+        // Preload high-res when opening (simple: create Image)
+        function preload(src){ const im = new Image(); im.src = src; }
+
+        // Preload neighbors for smoother navigation
+        function preloadNeighbors(i){
+          const next = (i + 1) % figures.length;
+          const prev = (i - 1 + figures.length) % figures.length;
+          preload(figures[next].querySelector('button').getAttribute('data-src'));
+          preload(figures[prev].querySelector('button').getAttribute('data-src'));
+        }
+
+        // Enhance open to also preload neighbors
+        const origOpen = open;
+        open = function(i){ origOpen(i); preloadNeighbors(i); };
+
+        // Assign indices (in case content changes later)
+        figures.forEach((f, i) => f.setAttribute('data-index', i));
+
+        // Basic ARIA: hide the rest of the page from screen readers when lightbox open
+        const pageChildren = Array.from(document.body.children).filter(n => n !== lightbox);
+        const setInert = (hide) => pageChildren.forEach(n => n.setAttribute('aria-hidden', hide ? 'true' : 'false'));
+        // Wrap open/close to toggle aria-hidden on siblings
+        const openWrap = open;
+        open = function(i){ setInert(true); openWrap(i); };
+        const closeWrap = close;
+        close = function(){ setInert(false); closeWrap(); };
+
+      })();
+    </script>
+  </body>
+</html>
