@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>События - Практика</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .highlight {
+      background: #00a2ff;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .highlight:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0, 183, 255, 0.4);
+    }
+
+    .highlight:active {
+      transform: translateY(0);
+    }
+
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .section h2 {
+      color: #667eea;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .section p {
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    /* Секция 1: Кнопка с изменением цвета */
+    .color-button {
+      background: #0026d1;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .color-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(4, 50, 253, 0.4);
+    }
+
+    .color-button:active {
+      transform: translateY(0);
+    }
+
+    /* Секция 2: Карточка с наведением */
+    .hover-card {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 8px;
+      border: 2px dashed #ddd;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .hover-card.active {
+      background: #123b9b;
+      color: white;
+      border-color: #667eea;
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Секция 3: Отслеживание клавиш */
+    .key-input {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      transition: border 0.3s ease;
+    }
+
+    .key-input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .key-display {
+      margin-top: 15px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #667eea;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Секция 4: Форма */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      transition: border 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .submit-button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background: #5568d3;
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.9rem;
+      display: none;
+      margin-top: 5px;
+    }
+
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      margin-top: 15px;
+      border: 1px solid #c3e6cb;
+    }
+
+    /* Секция 5: Счётчик */
+    .counter-display {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #667eea;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .counter-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .counter-buttons button {
+      flex: 1;
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .counter-buttons button:hover {
+      background: #5568d3;
+    }
+
+    .info {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #0d47a1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Практика: События</h1>
+
+    <!-- Секция 1: Клик по кнопке -->
+    <div class="section">
+      <h2>Секция 1: Клик по кнопке</h2>
+      <p>Нажмите на кнопку, чтобы изменить её цвет!</p>
+      
+      <button class="color-button" id="colorButton">Нажми меня!</button>
+    </div>
+
+    <!-- Секция 2: Наведение мыши -->
+    <div class="section">
+      <h2>Секция 2: Наведение мыши</h2>
+      <p>Наведите курсор на карточку:</p>
+      <div class="hover-card" id="hoverCard">
+        Наведи на меня курсор! 🖱️
+      </div>
+    </div>
+
+    <!-- Секция 3: Отслеживание клавиш -->
+    <div class="section">
+      <h2>Секция 3: Нажатие клавиш</h2>
+      <p>Нажимайте клавиши на клавиатуре:</p>
+      <input 
+        type="text" 
+        class="key-input" 
+        id="keyInput" 
+        placeholder="Нажмите любую клавишу..."
+      >
+      <div class="key-display" id="keyDisplay">
+        Нажмите клавишу...
+      </div>
+    </div>
+
+    <!-- Секция 4: Валидация формы -->
+    <div class="section">
+      <h2>Секция 4: Отправка формы</h2>
+      <form id="userForm" novalidate>
+        <label for="username">Имя: <span style="color: #dc3545;">*</span></label>
+        <input 
+          type="text" 
+          id="username" 
+          name="username"
+          placeholder="Иван Петров"
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="nameError"
+          autocomplete="name"
+          minlength="2"
+          maxlength="50"
+          required
+        >
+        <span class="error-message" id="nameError" role="alert" aria-live="polite">
+          Имя обязательно!
+        </span>
+
+        <label for="email">Email: <span style="color: #dc3545;">*</span></label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email"
+          placeholder="ivan@example.com"
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="emailError"
+          autocomplete="email"
+          maxlength="100"
+          required
+        >
+        <span class="error-message" id="emailError" role="alert" aria-live="polite">
+          Email должен содержать @
+        </span>
+
+        <button type="submit" class="submit-button">Отправить</button>
+      </form>
+      <div class="success-message" id="successMessage" role="status" aria-live="polite">
+        ✅ Форма успешно отправлена!
+      </div>
+    </div>
+
+    <!-- Секция 5: Счётчик кликов -->
+    <div class="section">
+      <h2>Секция 5: Счётчик кликов</h2>
+      <div class="counter-display" id="counterDisplay">0</div>
+      <div class="counter-buttons">
+        <button id="incrementButton">Увеличить (+1)</button>
+        <button id="resetButton">Сбросить</button>
+      </div>
+    </div>
+
+    <!-- Информация -->
+    <div class="info">
+      <strong>💡 Совет:</strong> Откройте консоль разработчика (F12) 
+      и посмотрите логи событий!
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="02-events-practice.js" defer></script>
+    
+</body>
+</html>

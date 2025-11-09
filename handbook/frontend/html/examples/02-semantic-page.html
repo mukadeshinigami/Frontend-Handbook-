@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A comprehensive guide to semantic HTML elements and best practices for building accessible web pages.">
+    <meta name="author" content="Frontend Handbook">
+    <title>Semantic HTML - Frontend Handbook</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: #2c3e50;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            background-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        /* Main Layout */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        
+        main {
+            flex: 1;
+        }
+        
+        aside {
+            flex: 0 0 300px;
+        }
+        
+        /* Article Styling */
+        article {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        article:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        article h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.8rem;
+        }
+        
+        article h3 {
+            color: #2c3e50;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        article p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            color: #555;
+        }
+        
+        article ul, article ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        article li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+        
+        article code {
+            background-color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Section Styling */
+        section {
+            margin-bottom: 2rem;
+        }
+        
+        section h2 {
+            color: #667eea;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        /* Aside Sidebar */
+        aside {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        aside h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        aside li {
+            margin-bottom: 0.5rem;
+        }
+        
+        aside a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        aside a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .tip {
+            background-color: #e8f4f8;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .tip strong {
+            color: #667eea;
+        }
+        
+        .example {
+            background-color: #f0f8ff;
+            border-left: 4px solid #764ba2;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .example strong {
+            color: #764ba2;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            aside {
+                flex: 1;
+                position: relative;
+                top: auto;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header: Page Introduction -->
+    <header>
+        <h1>🏷️ Semantic HTML</h1>
+        <p>Understanding meaningful markup for better accessibility and SEO</p>
+    </header>
+    
+    <!-- Navigation: Main site navigation -->
+    <nav>
+        <a href="#introduction">Introduction</a>
+        <a href="#semantic-elements">Elements</a>
+        <a href="#best-practices">Best Practices</a>
+        <a href="#accessibility">Accessibility</a>
+        <a href="#examples">Examples</a>
+    </nav>
+    
+    <!-- Main Content Container -->
+    <div class="container">
+        <main>
+            <!-- Introduction Article -->
+            <article id="introduction">
+                <h2>What is Semantic HTML?</h2>
+                <p>
+                    <strong>Semantic HTML</strong> refers to using HTML elements that have meaning 
+                    to both the browser and the developer. Instead of using generic 
+                    <code>&lt;div&gt;</code> elements for everything, semantic HTML uses 
+                    specialized elements like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, 
+                    <code>&lt;article&gt;</code>, and <code>&lt;footer&gt;</code>.
+                </p>
+                
+                <p>
+                    These elements clearly describe their purpose and content, making your code 
+                    more readable, maintainable, and accessible to assistive technologies.
+                </p>
+                
+                <h3>Why Semantic HTML Matters</h3>
+                <ul>
+                    <li><strong>Accessibility:</strong> Screen readers can better understand page structure</li>
+                    <li><strong>SEO:</strong> Search engines can identify important content more easily</li>
+                    <li><strong>Readability:</strong> Your code is easier to understand for other developers</li>
+                    <li><strong>Maintainability:</strong> Semantic markup is easier to maintain and update</li>
+                    <li><strong>Performance:</strong> Smaller file sizes with less unnecessary markup</li>
+                </ul>
+            </article>
+            
+            <!-- Semantic Elements Section -->
+            <section id="semantic-elements">
+                <h2>🎯 Key Semantic Elements</h2>
+                
+                <article>
+                    <h3>&lt;header&gt;</h3>
+                    <p>
+                        Represents introductory content or a group of navigational links. 
+                        Typically contains the page title, logo, and main navigation.
+                    </p>
+                    <div class="example">
+                        <strong>Example Use:</strong> Page title, logo, and navigation menu
+                    </div>
+                </article>
+                
+                <article>
+                    <h3>&lt;nav&gt;</h3>
+                    <p>
+                        Contains navigation links to other pages or sections. 
+                        Use only for major navigation blocks.
+                    </p>
+                    <div class="code-block">
+&lt;nav&gt;
+    &lt;a href="/"&gt;Home&lt;/a&gt;
+    &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;a href="/services"&gt;Services&lt;/a&gt;
+&lt;/nav&gt;
+                    </div>
+                    <div class="tip">
+                        <strong>Tip:</strong> Don't put all links inside &lt;nav&gt; - only major navigation
+                    </div>
+                </article>
+                
+                <article>
+                    <h3>&lt;main&gt;</h3>
+                    <p>
+                        Specifies the main content of the document. 
+                        There should be only one <code>&lt;main&gt;</code> element per page.
+                    </p>
+                    <div class="example">
+                        <strong>What it contains:</strong> Article content, blog posts, product listings
+                    </div>
+                </article>
+                
+                <article>
+                    <h3>&lt;article&gt;</h3>
+                    <p>
+                        Represents self-contained, independent content that could be 
+                        distributed or reused independently.
+                    </p>
+                    <ul>
+                        <li>Blog posts</li>
+                        <li>News articles</li>
+                        <li>Product reviews</li>
+                        <li>Comments</li>
+                        <li>Forum posts</li>
+                    </ul>
+                </article>
+                
+                <article>
+                    <h3>&lt;section&gt;</h3>
+                    <p>
+                        Groups related content together. Use it to organize your page 
+                        into logical, thematic blocks.
+                    </p>
+                    <div class="code-block">
+&lt;section id="about"&gt;
+    &lt;h2&gt;About Us&lt;/h2&gt;
+    &lt;p&gt;Our company information...&lt;/p&gt;
+&lt;/section&gt;
+                    </div>
+                </article>
+                
+                <article>
+                    <h3>&lt;aside&gt;</h3>
+                    <p>
+                        Contains supplementary content that is tangentially related 
+                        to the main content. Typically used for sidebars.
+                    </p>
+                    <ul>
+                        <li>Related articles</li>
+                        <li>Author information</li>
+                        <li>Advertisements</li>
+                        <li>Pull quotes</li>
+                        <li>Navigation</li>
+                    </ul>
+                </article>
+                
+                <article>
+                    <h3>&lt;footer&gt;</h3>
+                    <p>
+                        Contains footer information like copyright, contact info, 
+                        or supplementary navigation.
+                    </p>
+                    <div class="example">
+                        <strong>Common footer content:</strong> Copyright notice, links, social media, contact info
+                    </div>
+                </article>
+            </section>
+            
+            <!-- Best Practices Section -->
+            <section id="best-practices">
+                <h2>✅ Best Practices</h2>
+                
+                <article>
+                    <h3>1. Use Semantic Elements Correctly</h3>
+                    <p>
+                        Choose the semantic element that best matches your content. 
+                        Don't use a <code>&lt;button&gt;</code> to create a link or vice versa.
+                    </p>
+                </article>
+                
+                <article>
+                    <h3>2. Structure Your Document Logically</h3>
+                    <p>
+                        Use headings in order (h1, then h2, then h3, etc.). 
+                        Don't skip heading levels as it confuses screen readers.
+                    </p>
+                    <div class="code-block">
+&lt;!-- ✓ Correct --&gt;
+&lt;h1&gt;Page Title&lt;/h1&gt;
+&lt;h2&gt;Section&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+
+&lt;!-- ✗ Avoid --&gt;
+&lt;h1&gt;Page Title&lt;/h1&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+                    </div>
+                </article>
+                
+                <article>
+                    <h3>3. Use Lists for Lists</h3>
+                    <p>
+                        Use <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, and <code>&lt;li&gt;</code> 
+                        for actual lists, not for layout purposes.
+                    </p>
+                </article>
+                
+                <article>
+                    <h3>4. Use Tables for Tabular Data</h3>
+                    <p>
+                        Tables should contain tabular data with proper headers. 
+                        Don't use tables for layout.
+                    </p>
+                </article>
+                
+                <article>
+                    <h3>5. Provide Meaningful Links</h3>
+                    <p>
+                        Use descriptive link text instead of "click here" or "read more". 
+                        This helps both users and screen readers.
+                    </p>
+                    <div class="code-block">
+&lt;!-- ✓ Correct --&gt;
+&lt;a href="/blog"&gt;Read our latest blog posts&lt;/a&gt;
+
+&lt;!-- ✗ Avoid --&gt;
+&lt;a href="/blog"&gt;Click here&lt;/a&gt;
+                    </div>
+                </article>
+            </section>
+            
+            <!-- Accessibility Section -->
+            <section id="accessibility">
+                <h2>♿ Accessibility Benefits</h2>
+                
+                <article>
+                    <h3>Screen Reader Support</h3>
+                    <p>
+                        Semantic HTML helps screen readers understand the structure of your page, 
+                        making it easier for users with visual impairments to navigate.
+                    </p>
+                    <div class="tip">
+                        <strong>Benefit:</strong> Users can navigate by headings, jump to main content, or find navigation
+                    </div>
+                </article>
+                
+                <article>
+                    <h3>Keyboard Navigation</h3>
+                    <p>
+                        Semantic elements work better with keyboard-only navigation. 
+                        Users can tab through links, buttons, and form elements in a logical order.
+                    </p>
+                </article>
+                
+                <article>
+                    <h3>Mobile and AT Devices</h3>
+                    <p>
+                        Semantic HTML provides better support for mobile devices and 
+                        assistive technologies (screen readers, voice control, etc.).
+                    </p>
+                </article>
+            </section>
+            
+            <!-- Examples Section -->
+            <section id="examples">
+                <h2>📋 Complete Example</h2>
+                
+                <article>
+                    <h3>Full Page Structure</h3>
+                    <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;/header&gt;
+    
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+    
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Article Title&lt;/h2&gt;
+            &lt;p&gt;Content...&lt;/p&gt;
+        &lt;/article&gt;
+        
+        &lt;aside&gt;
+            &lt;h3&gt;Related&lt;/h3&gt;
+            &lt;p&gt;Sidebar content...&lt;/p&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2025 My Website&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </article>
+            </section>
+        </main>
+        
+        <!-- Sidebar Navigation -->
+        <aside>
+            <h3>📌 On This Page</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#semantic-elements">Elements</a>
+                    <ul style="margin-top: 0.5rem; margin-left: 1rem; font-size: 0.9rem;">
+                        <li><a href="#semantic-elements">&lt;header&gt;</a></li>
+                        <li><a href="#semantic-elements">&lt;nav&gt;</a></li>
+                        <li><a href="#semantic-elements">&lt;main&gt;</a></li>
+                        <li><a href="#semantic-elements">&lt;article&gt;</a></li>
+                        <li><a href="#semantic-elements">&lt;section&gt;</a></li>
+                        <li><a href="#semantic-elements">&lt;aside&gt;</a></li>
+                        <li><a href="#semantic-elements">&lt;footer&gt;</a></li>
+                    </ul>
+                </li>
+                <li><a href="#best-practices">Best Practices</a></li>
+                <li><a href="#accessibility">Accessibility</a></li>
+                <li><a href="#examples">Examples</a></li>
+            </ul>
+            
+            <div class="tip" style="margin-top: 2rem;">
+                <strong>💡 Remember:</strong>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    Semantic HTML isn't about making websites look different. 
+                    It's about making them more meaningful and accessible.
+                </p>
+            </div>
+        </aside>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Frontend Handbook. All rights reserved.</p>
+        <p>
+            <a href="https://github.com/mukadeshinigami/Frontend-Handbook-">View on GitHub</a> | 
+            <a href="/">Back to Home</a>
+        </p>
+        <p><small>Last updated: October 27, 2025</small></p>
+    </footer>
+    
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Highlight current section when scrolling
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section, article');
+            const navLinks = document.querySelectorAll('aside a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Log page info
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Semantic HTML page loaded');
+            console.log('📚 Learning semantic HTML for better web pages');
+        });
+    </script>
+</body>
+</html>
