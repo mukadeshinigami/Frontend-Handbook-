@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Динамическая галерея</title>
+
+
+    <link rel="stylesheet" href="03.1-event-delegation.css">
+
+</head>
+<body>
+    <main>
+        <h1>Динамическая галерея</h1>
+
+        <form id="addImageForm" class="controls" aria-label="Добавить изображение">
+            <div class="field"> 
+                <label for="imageUrl" class="label">URL изображения</label>
+
+                <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/photo.jpg" required>
+            </div>
+            <div class="field">
+                <label for="imageCaption" class="label">Подпись</label>
+
+                <input type="text" id="imageCaption" name="imageCaption" placeholder="Описание изображения" required>
+            </div>
+            <div class="actions">
+                <button type="submit" class="button" id="addImageBtn">Добавить изображение</button>
+
+            </div>
+        </form>
+        <section id="gallery" class="gallery" role="list" aria-label="Галерея изображений">
+            <!-- Изображения будут добавлены сюда -->
+        </section>
+    </main>
+    <script src="03.1-event-delegation.js" defer></script>
+</body>
