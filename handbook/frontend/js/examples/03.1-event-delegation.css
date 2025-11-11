@@ -1,0 +1,214 @@
+:root {
+  --accent: #4ca0af;
+  --accent-2: #47a49d;
+  /* Новые переменные для темной темы */
+  --bg-primary: #121212;    /* Основной фон */
+  --bg-secondary: #1e1e1e;  /* Вторичный фон (карточки, контейнеры) */
+  --bg-gradient: linear-gradient(135deg, #1a2c4d 0%, #1a0f29 100%); /* Градиент для body */
+  --text-primary: #e0e0e0;  /* Основной текст */
+  --text-secondary: #a0a0a0; /* Вторичный, менее важный текст */
+  --text-muted: #777;       /* Можно оставить или изменить на #666 */
+  --border-color: #333;     /* Цвет границ */
+  --danger: #f44336;
+  --radius: 12px;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.4); /* Тень стала темнее и насыщеннее */
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Tahoma, sans-serif;
+  /* Используем новую переменную для градиента */
+  background: var(--bg-gradient);
+  /* Используем новую переменную для основного текста */
+  color: var(--text-primary);
+  padding: 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  /* Меняем фон контейнера на темный */
+  background: var(--bg-secondary);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  color: var(--accent);
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+/* Controls */
+.controls {
+
+  color: rgb(131, 164, 202);
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.label {
+  font-size: .85rem;
+  margin-bottom: 6px;
+  /* Меняем цвет текста на вторичный светлый */
+  color: var(--text-secondary);
+}
+
+
+
+input[type="url"],
+input[type="text"] {
+  padding: 10px 12px;
+  /* Меняем фон и границу инпутов */
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow .15s, border-color .15s;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(76, 147, 175, 0.2); /* Тень с акцентным цветом */
+}
+
+.actions {
+  flex: 0 0 auto;
+}
+
+.button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.button:focus {
+  outline: 3px solid rgba(0, 208, 255, 0.3); /* Обводка с акцентным цветом */
+}
+
+/* Gallery grid */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  align-items: start;
+  min-height: 120px;
+  padding: 6px;
+}
+
+.gallery-item {
+  /* Меняем фон карточки на основной темный */
+  background: var(--bg-primary);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: transform .18s;
+  /* Добавляем тонкую границу для лучшего отделения от фона */
+  border: 1px solid var(--border-color);
+}
+
+.gallery-item:focus-within,
+.gallery-item:hover {
+  transform: translateY(-6px);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  /* Меняем цвет фона placeholder'а */
+  background: #2a2a2a;
+}
+
+.caption {
+  padding: 12px;
+  font-size: .95rem;
+  /* Меняем цвет текста */
+  color: var(--text-primary);
+  /* Меняем цвет разделительной линии */
+  border-top: 1px solid var(--border-color);
+}
+
+/* Delete button */
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity .18s, transform .18s;
+  font-weight: 600;
+}
+
+.gallery-item:hover .delete-btn,
+.gallery-item:focus-within .delete-btn {
+  opacity: 1;
+  transform: none;
+}
+
+.delete-btn:focus {
+  outline: 3px solid rgba(244, 67, 54, 0.3); /* Обводка с цветом опасности */
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  /* Меняем цвет на вторичный */
+  color: var(--text-secondary);
+  padding: 26px;
+  font-size: 1.02rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 520px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
