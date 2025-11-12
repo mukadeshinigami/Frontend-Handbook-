@@ -47,3 +47,6 @@ test/
 # OS
 Thumbs.db
 .DS_Store
+
+/handbook/languages/german/
+
