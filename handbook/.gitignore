@@ -1,0 +1,6 @@
+# Ignore generated or local language folders
+# Added German roadmap folder as requested
+/handbook/languages/german/
+
+# You can add other language folders or local files below
+# /handbook/languages/spanish/
