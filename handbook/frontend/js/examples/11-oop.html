@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager (ООП)</title>
+  <style>
+    body { font-family: Arial; max-width: 1000px; margin: 50px auto; }
+    .project { background: #f8f9fa; padding: 20px; margin-bottom: 20px; border-radius: 10px; }
+    .task { background: white; padding: 15px; margin: 10px 0; border-left: 4px solid #667eea; }
+    .task.completed { opacity: 0.6; text-decoration: line-through; border-color: #28a745; }
+    .task.high-priority { border-color: #dc3545; }
+    button { padding: 8px 15px; margin: 5px; cursor: pointer; }
+    .stats { background: #667eea; color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <div class="stats" id="stats"></div>
+  
+  <div>
+    <input type="text" id="projectName" placeholder="Название проекта">
+    <button onclick="manager.createProject()">Создать проект</button>
+  </div>
+  
+  <div id="projects"></div>
+
+  <script src="11-oop.js"></script>
+</body>
+</html>
