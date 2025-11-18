@@ -1,0 +1,656 @@
+/* ============================================
+   Modern Todo List - CSS Variables & Base
+   ============================================ */
+
+:root {
+  /* Color Palette */
+  --primary: #667eea;
+  --primary-dark: #5568d3;
+  --primary-light: #818cf8;
+  --secondary: #f093fb;
+  --accent: #4facfe;
+  --success: #10b981;
+  --success-dark: #059669;
+  --danger: #ef4444;
+  --danger-dark: #dc2626;
+  --warning: #f59e0b;
+  
+  /* Neutral Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ============================================
+   Google Fonts Import
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   Base Styles & Reset
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   App Container
+   ============================================ */
+
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+/* ============================================
+   Statistics Container (#stats)
+   ============================================ */
+
+#stats {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-xl);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  animation: fadeInDown 0.5s ease-out;
+}
+
+#stats:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 30px -5px rgba(102, 126, 234, 0.3), 0 10px 10px -5px rgba(102, 126, 234, 0.2);
+}
+
+#stats h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+#stats > div {
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-xs) 0;
+  opacity: 0.95;
+  font-weight: var(--font-weight-medium);
+}
+
+#stats > div:first-of-type {
+  margin-top: var(--spacing-md);
+}
+
+/* ============================================
+   Project Creation Form
+   ============================================ */
+
+body > div:first-of-type {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+#projectNameInput {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+#projectNameInput::placeholder {
+  color: var(--text-muted);
+}
+
+#projectNameInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+#createProjectBtn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+}
+
+#createProjectBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+}
+
+#createProjectBtn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   Projects Container (#projects)
+   ============================================ */
+
+#projects {
+  display: grid;
+  gap: var(--spacing-xl);
+  animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+#projects:empty::before {
+  content: '📋';
+  display: block;
+  text-align: center;
+  font-size: 4rem;
+  margin: var(--spacing-2xl) 0;
+  opacity: 0.3;
+  animation: float 3s ease-in-out infinite;
+}
+
+#projects:empty::after {
+  content: 'Создайте свой первый проект, чтобы начать работу!';
+  display: block;
+  text-align: center;
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ============================================
+   Project Cards (.project)
+   ============================================ */
+
+.project {
+  background: var(--bg-primary);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+  border: 1px solid var(--border-color);
+  animation: slideInUp 0.4s ease-out both;
+  position: relative;
+  overflow: hidden;
+}
+
+.project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow);
+}
+
+.project:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.project:hover::before {
+  transform: scaleX(1);
+}
+
+.project h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.project h3::before {
+  content: '📁';
+  font-size: var(--font-size-xl);
+}
+
+/* ============================================
+   Tasks List Container
+   ============================================ */
+
+.project > div:not(:last-child) {
+  margin-bottom: var(--spacing-lg);
+  min-height: 20px;
+}
+
+.project > div:empty::before {
+  content: '✨ Пока нет задач. Добавьте первую!';
+  display: block;
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: var(--font-size-sm);
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 2px dashed var(--border-color);
+}
+
+/* ============================================
+   Task Items (.task)
+   ============================================ */
+
+.task {
+  background: var(--bg-secondary);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md) 0;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  animation: slideInRight 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.task::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary);
+  transition: width var(--transition-base);
+}
+
+.task:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-primary);
+}
+
+.task:hover::before {
+  width: 6px;
+}
+
+.task.completed {
+  opacity: 0.7;
+  background: var(--bg-tertiary);
+  border-left-color: var(--success);
+  text-decoration: line-through;
+}
+
+.task.completed::before {
+  background: var(--success);
+}
+
+.task.completed button {
+  text-decoration: none;
+}
+
+.task.high-priority {
+  border-left-color: var(--danger);
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.05) 0%, var(--bg-secondary) 100%);
+}
+
+.task.high-priority::before {
+  background: var(--danger);
+}
+
+.task.high-priority::after {
+  content: '🔥';
+  position: absolute;
+  right: calc(var(--spacing-sm) + 80px);
+  top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ============================================
+   Buttons (General)
+   ============================================ */
+
+button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Task Toggle Buttons */
+.task button {
+  background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+  color: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+}
+
+.task button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--success-dark) 0%, var(--success) 100%);
+}
+
+.task.completed button {
+  background: linear-gradient(135deg, var(--text-secondary) 0%, var(--text-muted) 100%);
+}
+
+.task.completed button:hover {
+  background: linear-gradient(135deg, var(--text-muted) 0%, var(--text-secondary) 100%);
+}
+
+/* Add Task Button */
+.project button:last-of-type {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  margin-top: var(--spacing-md);
+}
+
+.project button:last-of-type:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+}
+
+/* ============================================
+   Input Fields (Add Task)
+   ============================================ */
+
+.project input[type="text"] {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--spacing-md);
+}
+
+.project input[type="text"]::placeholder {
+  color: var(--text-muted);
+}
+
+.project input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+  
+  body {
+    padding: var(--spacing-md);
+  }
+  
+  #stats {
+    padding: var(--spacing-lg);
+  }
+  
+  #stats h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  body > div:first-of-type {
+    flex-direction: column;
+  }
+  
+  #createProjectBtn {
+    width: 100%;
+  }
+  
+  .project {
+    padding: var(--spacing-lg);
+  }
+  
+  .project h3 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .task {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .task button {
+    align-self: flex-end;
+  }
+  
+  .project input[type="text"],
+  .project button:last-of-type {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
+  
+  #stats {
+    padding: var(--spacing-md);
+  }
+  
+  .project {
+    padding: var(--spacing-md);
+  }
+  
+  .task {
+    padding: var(--spacing-md);
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  
+  #stats,
+  body > div:first-of-type,
+  .project input,
+  .project button {
+    display: none;
+  }
+  
+  .project {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+}
+
