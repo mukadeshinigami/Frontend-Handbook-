@@ -249,11 +249,63 @@ class ProjectManager {
 
 function renderStats(container, stats) { 
     container.innerHTML = `
-    <h2>📊 Статистика</h2>
-    <div>Проектов: ${stats.totalProjects}</div>
-    <div>Задач: ${stats.totalTasks}</div>
-    ...
-  `;
+        <div class="stats-card" style="
+            background: var(--bg-tertiary, #f1f5f9);
+            border-radius: var(--border-radius-xl, 16px);
+            box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0,0,0,0.1));
+            padding: var(--spacing-lg, 1.5rem) var(--spacing-xl, 2rem);
+            margin-bottom: var(--spacing-lg, 1.5rem);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2xl, 3rem);
+            flex-wrap: wrap;
+            ">
+            <div style="
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-sm, 0.75rem);
+                ">
+                <span style="font-size: 2rem;">📊</span>
+                <span style="font-size: var(--font-size-2xl, 1.5rem); font-weight: var(--font-weight-semibold, 600); color: var(--primary, #667eea);">Статистика</span>
+            </div>
+            <div style="
+                display: flex;
+                gap: var(--spacing-xl, 2rem);
+                margin-left: auto;
+                ">
+                <div style="
+                    background: var(--primary-light, #818cf8);
+                    color: #fff;
+                    padding: var(--spacing-sm, 0.75rem) var(--spacing-lg, 1.5rem);
+                    border-radius: var(--border-radius, 12px);
+                    font-size: var(--font-size-lg, 1.125rem);
+                    min-width: 110px;
+                    text-align: center;
+                    font-weight: var(--font-weight-semibold, 600);
+                    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0,0,0,0.05));
+                ">
+                    <div style="font-size: 2rem; margin-bottom: 0.25rem;">📁</div>
+                    <div>${stats.totalProjects}</div>
+                    <div style="font-size: var(--font-size-xs, 0.75rem); color: var(--text-secondary, #64748b);">Проектов</div>
+                </div>
+                <div style="
+                    background: var(--success-dark, #059669);
+                    color: #fff;
+                    padding: var(--spacing-sm, 0.75rem) var(--spacing-lg, 1.5rem);
+                    border-radius: var(--border-radius, 12px);
+                    font-size: var(--font-size-lg, 1.125rem);
+                    min-width: 110px;
+                    text-align: center;
+                    font-weight: var(--font-weight-semibold, 600);
+                    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0,0,0,0.05));
+                ">
+                    <div style="font-size: 2rem; margin-bottom: 0.25rem;">✅</div>
+                    <div>${stats.totalTasks}</div>
+                    <div style="font-size: var(--font-size-xs, 0.75rem); color: var(--text-secondary, #64748b);">Задач</div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 // Initialize manager and UI (UIController is optional)
