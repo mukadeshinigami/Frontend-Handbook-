@@ -48,6 +48,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+
 }
 
 .calculator-container {
@@ -60,6 +61,7 @@ body {
   width: 100%;
   max-width: 380px;
   animation: slideIn 0.3s ease-out;
+
 }
 
 @keyframes slideIn {
@@ -90,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  
 }
 
 .display-wrapper {
