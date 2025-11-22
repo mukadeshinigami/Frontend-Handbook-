@@ -1,4 +1,3 @@
-// Number
 var age = 25;
 var price = 99.99;
 var hex = 0xf00d;
@@ -11,8 +10,17 @@ var isActive = true;
 // Null и Undefined
 var n = null;
 var u = undefined;
-// Symbol (требует настройки tsconfig)
-// let sym: symbol = Symbol("key");
-// BigInt (ES2020+) (требует настройки tsconfig)
-// let big: bigint = 100n;
-console.log(age, price, hex, userName, message, isDone, isActive, n, u);
+var numbers = [1, 2, 3, 4, 5]; // Массив чисел
+var names = ["Alice", "Bob", "Charlie"]; // Массив строк
+var scores = [10, 20, 30]; // Альтернативный синтаксис массива
+var matrix = [
+    [1, 2, 3],
+    [4, 6, 7]
+];
+var mix = [1, "two", 3, "four"];
+var user = {
+    name: "A",
+    age: 123
+};
+console.log(user.age);
+console.log(age, price, hex, userName, message, isDone, isActive);
