@@ -1,4 +1,3 @@
-// Number
 let age: number = 25;
 let price: number = 99.99;
 let hex: number = 0xf00d;
@@ -15,10 +14,23 @@ let isActive: boolean = true;
 let n: null = null;
 let u: undefined = undefined;
 
-// Symbol (требует настройки tsconfig)
-// let sym: symbol = Symbol("key");
+let numbers: number[] = [1, 2, 3, 4, 5]; // Массив чисел
+let names: string[] = ["Alice", "Bob", "Charlie"]; // Массив строк
 
-// BigInt (ES2020+) (требует настройки tsconfig)
-// let big: bigint = 100n;
+let scores: Array<number> = [10, 20, 30]; // Альтернативный синтаксис массива
 
-console.log(age, price, hex, userName, message, isDone, isActive, n, u);
+let matrix: number[][] = [
+
+    [1,2,3],
+    [4,6,7]
+
+];
+
+let mix: (number | string)[] = [1, "two", 3, "four"]
+
+let user: {name: string; age: number} = {
+    name: "A",
+    age: 123
+}
+console.log(user.age)
+console.log(age, price, hex, userName, message, isDone, isActive);
