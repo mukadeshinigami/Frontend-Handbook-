@@ -1,3 +1,4 @@
+// Number
 var age = 25;
 var price = 99.99;
 var hex = 0xf00d;
@@ -18,9 +19,5 @@ var matrix = [
     [4, 6, 7]
 ];
 var mix = [1, "two", 3, "four"];
-var user = {
-    name: "A",
-    age: 123
-};
-console.log(user.age);
-console.log(age, price, hex, userName, message, isDone, isActive);
+
+console.log(age, price, hex, userName, message, isDone, isActive, n, u, matrix);
