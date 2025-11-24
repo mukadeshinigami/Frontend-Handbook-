@@ -1,3 +1,4 @@
+
 class Calculator {
     constructor() {
         const displayElement = document.querySelector('.inputCal');
@@ -8,10 +9,11 @@ class Calculator {
         this.currentValue = '0';
         this.previousValue = '';
         this.operator = null;
-        this.waitingForNumber = true;
-        this.setupEvents();
+        this.waitingForNumber = true; 
+        this.setupEvents(); 
         this.updateDisplay();
     }
+
     setupEvents() {
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(button => {
@@ -23,7 +25,9 @@ class Calculator {
             });
         });
     }
+
     handleInput(action, value) {
+        console.log(`Нажата кнопка: ${value}, действие: ${action}`);
         if (action === 'clear') {
             this.clear();
         }
@@ -37,10 +41,11 @@ class Calculator {
             this.addNumber(value);
         }
     }
+
     addNumber(num) {
-        if (this.waitingForNumber) {
+        if (this.waitingForNumber) { 
             this.currentValue = num;
-            this.waitingForNumber = false;
+            this.waitingForNumber = false; 
         }
         else if (this.currentValue === '0') {
             this.currentValue = num;
@@ -73,6 +78,7 @@ class Calculator {
             case '-':
                 result = prev - current;
                 break;
+            case '×':
             case 'x':
                 result = prev * current;
                 break;
@@ -100,5 +106,4 @@ class Calculator {
     }
 }
 const calculator = new Calculator();
-export {};
 //# sourceMappingURL=script.js.map
