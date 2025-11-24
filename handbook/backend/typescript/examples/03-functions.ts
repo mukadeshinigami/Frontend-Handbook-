@@ -83,7 +83,7 @@ async function demonstrateAwait() {
     // This line PAUSES this function until the Promise resolves
     const data = await fetchData();
     
-    console.log("This runs ONLY after fetchData completes");
+    console.log("This runs ONLY after fetchData completes");t
     return data;
 }
 console.log("Calling demonstrateAwait...");

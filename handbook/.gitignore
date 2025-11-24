@@ -6,6 +6,6 @@
 # /handbook/languages/spanish/
 
 # Ignore TypeScript build artifacts for the calculator project
-/frontend/js/project/calculator/*.js
+
 /frontend/js/project/calculator/*.js.map
 /frontend/js/project/calculator/*.d.ts
