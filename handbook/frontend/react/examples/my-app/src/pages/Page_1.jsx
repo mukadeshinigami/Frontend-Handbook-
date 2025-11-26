@@ -6,7 +6,9 @@ function Todos() {
 	const [text, setText] = useState('');
 	const [items, setItems] = useState([]);
 
-	function addTodo() {
+	function addTodo(e) {
+		e.preventDefault();
+
 		if (!text.trim()) return;
 
 		setItems(prev => [...prev, { 
