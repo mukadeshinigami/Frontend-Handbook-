@@ -1,4 +1,15 @@
 /* Styles for Page_1 (Todos demo inside Article) */
+.page-1 .special { 
+  padding: 8px 12px;
+  background: #0af36b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+ .page-1 .special_del {
+  background: #0f172a;
+ }
 
 .page-1 {
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
