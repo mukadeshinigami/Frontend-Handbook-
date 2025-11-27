@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Profile from './pages/Profile';
 import Page_1 from './pages/Page_1';
+import Page_2 from './pages/Page_2';
 
 function Item({ name, isPacked }) {
   return (
@@ -29,6 +30,8 @@ export default function App() {
 
           <Link to="/Page_1"><Item name="Page 1" isPacked={true} /></Link>
 
+          <Link to="/Page_2"><Item name="Page 2" isPacked={true} /></Link>
+
         </nav>
       </header>
 
@@ -39,6 +42,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/Page_1" element={<Page_1 />} />
+          <Route path="/Page_2" element={<Page_2 />} />
         </Routes>
       </main>
     </BrowserRouter>
