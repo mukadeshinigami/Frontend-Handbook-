@@ -11,4 +11,4 @@ int asd(int a, int b) {
 int main(void) {
     print_number(42);
     return 0;
-}ы
+}
